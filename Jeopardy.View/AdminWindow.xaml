@@ -1,0 +1,91 @@
+﻿<Window x:Class="Jeopardy.View.AdminWindow"
+        xmlns:vm="clr-namespace:Jeopardy.ViewModel;assembly=Jeopardy.ViewModel"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Game Host" Height="800" Width="1200"
+        x:Name="MyGameAdminViewModel"
+        Closed="On_Window_Closed">
+    <Window.DataContext>
+        <vm:GameAdminViewModel />
+    </Window.DataContext>
+    <Window.Resources>
+        <vm:BoolToColorConverter x:Key="BoolToColor" />
+        <vm:NullVisibilityConverter x:Key="NullVisibilityConverter" />
+    </Window.Resources>
+    <Grid >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+        </Grid.RowDefinitions>
+        
+        <!--Gameboard goes here -->
+        <ContentPresenter Grid.Column="0" Grid.Row="0" 
+                          Content="{Binding CurrentGame.CurrentRound.Gameboard}" ContentTemplate="{DynamicResource GameboardGridTempate}" />
+
+        <StackPanel  Orientation="Vertical" Grid.Row="1" Grid.Column="0">
+            <TextBlock FontWeight="Bold" FontSize="32" FontFamily="Helvetica" Text="{Binding CurrentGame.CurrentRound.Gameboard.CurrentFocus.Answer}" 
+                VerticalAlignment="Top"  ScrollViewer.VerticalScrollBarVisibility="Auto" TextWrapping="Wrap"  />
+
+            <Label VerticalAlignment="Bottom" Content="{Binding Author}" />
+        </StackPanel>
+        <Grid Grid.Row="0" Grid.Column="1" Grid.RowSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <Button Grid.Row="0" Grid.Column="0" Content="Correct" Background="Green" Margin="20" 
+                    FontWeight="Bold" FontSize="24" FontFamily="Helvetica" Command="{Binding CorrectAnswerCommand}">
+            </Button>
+
+            <Button Grid.Row="1" Grid.Column="1" Content="Wrong" Background="Red" Margin="20" 
+                    FontWeight="Bold" FontSize="24" FontFamily="Helvetica" Command="{Binding IncorrectAnswerCommand}">
+            </Button>
+
+            <Button Grid.Row="2" Grid.Column="1" Content="Reveal Answer" Background="Yellow" Margin="20" 
+                    FontWeight="Bold" FontSize="24" FontFamily="Helvetica" Command="{Binding OnNoAnswerCommand}" >
+            </Button>
+
+            <Button Grid.Row="3" Grid.Column="1" Content="Start Round" Background="Orange" Margin="20" 
+                    FontWeight="Bold" FontSize="24" FontFamily="Helvetica" Command="{Binding StartRoundCommand}" >
+            </Button>
+
+            <Button Grid.Row="4" Grid.Column="1" Content="Next Round" Background="Orange" Margin="20" 
+                    FontWeight="Bold" FontSize="24" FontFamily="Helvetica" Command="{Binding NextRoundCommand}" >
+            </Button>
+
+        </Grid>
+        <StackPanel x:Name="ScoreStackPanel" Orientation="Vertical" Grid.Row="0" Grid.Column="2" Grid.RowSpan="2">
+            <Label FontWeight="Bold" FontSize="24" FontFamily="Helvetica">Score</Label>
+            <ScrollViewer VerticalScrollBarVisibility="Auto"  Height="800" >
+                <ItemsControl ItemsSource="{Binding CurrentGame.Players}" >
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Vertical">
+                                <Label Content="{Binding Name,Mode=OneWay}" Margin="10, 40, 10, 0"
+                                  Background="{Binding IsAnswering, Converter={StaticResource BoolToColor}}"/>
+                                <Button Height="40"
+                                    Command="{Binding OnSelectPlayerCommand}" Visibility="Visible"
+                                    CommandParameter="{Binding}">Answer</Button>
+                                <TextBox Text="{Binding Score,Mode=TwoWay}" Margin="10, 5, 10, 20" FontSize="24"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
+        </StackPanel>
+    </Grid>
+</Window>

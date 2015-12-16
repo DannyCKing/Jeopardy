@@ -1,0 +1,38 @@
+﻿<Window x:Class="Jeopardy.View.QuestionPacksEditor"
+        xmlns:vm="clr-namespace:Jeopardy.ViewModel;assembly=Jeopardy.ViewModel"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="QuestionPacksEditor" Height="600" Width="600" >
+    <Window.DataContext>
+        <vm:QuestionPacksEditorViewModel />
+    </Window.DataContext>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="4*" />
+            <RowDefinition Height="1*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <ScrollViewer Grid.Row="0" Grid.Column="0">
+            <StackPanel>
+                <ListBox x:Name="QuestionPacks" ItemsSource="{Binding Path=QuestionPacks}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <TextBlock Text="{Binding Path=QuestionPackName}" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+
+            </StackPanel>
+
+        </ScrollViewer>
+        <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="0">
+            <Button VerticalAlignment="Top" Margin="20" Click="Create_Question_Click">Add New</Button>
+            <Button VerticalAlignment="Top" Margin="20" Click="Edit_Question_Click">Edit Selected Pack</Button>
+            <Button VerticalAlignment="Top" Margin="20" Click="Edit_Question_Click">Delete Selected Pack</Button>
+        </StackPanel>
+    </Grid>
+</Window>

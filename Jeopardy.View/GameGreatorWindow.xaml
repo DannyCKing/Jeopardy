@@ -1,0 +1,75 @@
+﻿<Window x:Class="Jeopardy.View.GameCreatorWindow"
+        xmlns:vm="clr-namespace:Jeopardy.ViewModel;assembly=Jeopardy.ViewModel"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Create A Game" Height="600" Width="800"
+        x:Name="MyGameCreatorWindow"
+        Closed="On_Window_Closed">
+    <Window.DataContext>
+        <vm:GameCreatorViewModel />
+    </Window.DataContext>
+    <StackPanel Orientation="Vertical">
+        <StackPanel Orientation="Horizontal">
+            <Label FontWeight="Bold" FontSize="32" FontFamily="Helvetica">Create a game</Label>
+        </StackPanel>
+        <Grid >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="0">
+                <Label FontWeight="Bold" FontSize="24" FontFamily="Helvetica">Players</Label>
+                <Button  Margin="20, 10, 20, 10" Command="{Binding RemovePlayerCommand}" >Remove Last Player</Button>
+                <Button  Margin="20, 10, 20, 10" Command="{Binding AddPlayerCommand}" >Add Player</Button>
+                <ItemsControl ItemsSource="{Binding Players}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <TextBox Text="{Binding Name,Mode=TwoWay}" Grid.Column="0"
+                                Margin="20, 10, 20, 10"/>
+                            </Grid>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </StackPanel>
+
+            <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="1">
+                <Button VerticalAlignment="Top" Click="Edit_Questions_Pack" Margin="20">Edit Question Packs</Button>
+
+                <Label FontWeight="Bold" FontSize="24" FontFamily="Helvetica">Questions</Label>
+
+                <Label Margin="5">Round One Questions:</Label>
+                <ComboBox Margin="5" x:Name="RoundOneQuestionPack" ItemsSource="{Binding Path=QuestionPacksRoundOne}" SelectedItem="{Binding RoundOneSelectedItem,Mode=TwoWay}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <TextBlock Text="{Binding Path=QuestionPackName}" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+                <Label Margin="5" >Round Two Question Pack:</Label>
+                <ComboBox Margin="5" x:Name="RoundTwoQuestionPack" ItemsSource="{Binding Path=QuestionPacksRoundTwo}" SelectedItem="{Binding RoundTwoSelectedItem,Mode=TwoWay}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <TextBlock Text="{Binding Path=QuestionPackName}" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+
+                <Button Margin="10" VerticalAlignment="Bottom" Command="{Binding CreateGameCommand}" CommandParameter="{Binding ElementName=MyGameCreatorWindow}">Create Game</Button>
+                <Label Margin="5" Foreground="Red" Content="{Binding ErrorText}" />
+            </StackPanel>
+            
+        </Grid>
+    </StackPanel>
+</Window>

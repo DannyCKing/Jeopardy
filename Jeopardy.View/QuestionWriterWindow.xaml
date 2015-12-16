@@ -1,0 +1,180 @@
+﻿<Window x:Class="Jeopardy.View.QuestionWriterWindow"
+        xmlns:vm="clr-namespace:Jeopardy.ViewModel;assembly=Jeopardy.ViewModel"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:md="clr-namespace:Jeopardy.Model;assembly=Jeopardy.Model"
+        Title="QuestionWriterWindow" Height="600" Width="800"  WindowState="Maximized">
+    <Window.DataContext>
+        <vm:QuestionsCreatorViewModel />
+    </Window.DataContext>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="8*" />
+            <RowDefinition Height="1*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <ScrollViewer Grid.Row="0" Grid.Column="0">
+            <StackPanel>
+            <Label Content="Round Name"/>
+                <TextBox Text="{Binding GameboardToSave.QuestionPackName, Mode=TwoWay}" Margin="10"/>
+                
+                <!-- Category 1 -->
+                <Label Content="Category 1 Name" FontSize="20" />
+                <TextBox Text="{Binding GameboardToSave.Categories[0].CategoryName, Mode=TwoWay}" Margin="10" FontSize="20" />
+
+                <Label Content="Question 1" />
+                <TextBox Text="{Binding GameboardToSave.Categories[0].Questions[0].Source, Mode=TwoWay}" Margin="10, 10, 10, 5" />
+                <TextBox Text="{Binding GameboardToSave.Categories[0].Questions[0].Answer, Mode=TwoWay}" Margin="10, 5, 10, 10"/>
+
+                <Label Content="Question 2" />
+                <TextBox Text="{Binding GameboardToSave.Categories[0].Questions[1].Source, Mode=TwoWay}" Margin="10, 10, 10, 5"/>
+                <TextBox Text="{Binding GameboardToSave.Categories[0].Questions[1].Answer, Mode=TwoWay}" Margin="10, 5, 10, 10"/>
+
+                <Label Content="Question 3" />
+                <TextBox Text="{Binding GameboardToSave.Categories[0].Questions[2].Source, Mode=TwoWay}" Margin="10, 10, 10, 5"/>
+                <TextBox Text="{Binding GameboardToSave.Categories[0].Questions[2].Answer, Mode=TwoWay}" Margin="10, 5, 10, 10"/>
+
+                <Label Content="Question 4" />
+                <TextBox Text="{Binding GameboardToSave.Categories[0].Questions[3].Source, Mode=TwoWay}" Margin="10, 10, 10, 5"/>
+                <TextBox Text="{Binding GameboardToSave.Categories[0].Questions[3].Answer, Mode=TwoWay}" Margin="10, 5, 10, 10"/>
+
+                <Label Content="Question 5  " />
+                <TextBox Text="{Binding GameboardToSave.Categories[0].Questions[4].Source, Mode=TwoWay}" Margin="10, 10, 10, 5"/>
+                <TextBox Text="{Binding GameboardToSave.Categories[0].Questions[4].Answer, Mode=TwoWay}" Margin="10, 5, 10, 10"/>
+
+
+                <!-- Category 2 -->
+                <Label Content="Category 2 Name" FontSize="20" />
+                <TextBox Text="{Binding GameboardToSave.Categories[1].CategoryName, Mode=TwoWay}" Margin="10" FontSize="20" />
+
+                <Label Content="Question 1" />
+                <TextBox Text="{Binding GameboardToSave.Categories[1].Questions[0].Source, Mode=TwoWay}" Margin="10, 10, 10, 5" />
+                <TextBox Text="{Binding GameboardToSave.Categories[1].Questions[0].Answer, Mode=TwoWay}" Margin="10, 5, 10, 10"/>
+
+                <Label Content="Question 2" />
+                <TextBox Text="{Binding GameboardToSave.Categories[1].Questions[1].Source, Mode=TwoWay}" Margin="10, 10, 10, 5"/>
+                <TextBox Text="{Binding GameboardToSave.Categories[1].Questions[1].Answer, Mode=TwoWay}" Margin="10, 5, 10, 10"/>
+
+                <Label Content="Question 3" />
+                <TextBox Text="{Binding GameboardToSave.Categories[1].Questions[2].Source, Mode=TwoWay}" Margin="10, 10, 10, 5"/>
+                <TextBox Text="{Binding GameboardToSave.Categories[1].Questions[2].Answer, Mode=TwoWay}" Margin="10, 5, 10, 10"/>
+
+                <Label Content="Question 4" />
+                <TextBox Text="{Binding GameboardToSave.Categories[1].Questions[3].Source, Mode=TwoWay}" Margin="10, 10, 10, 5"/>
+                <TextBox Text="{Binding GameboardToSave.Categories[1].Questions[3].Answer, Mode=TwoWay}" Margin="10, 5, 10, 10"/>
+
+                <Label Content="Question 5  " />
+                <TextBox Text="{Binding GameboardToSave.Categories[1].Questions[4].Source, Mode=TwoWay}" Margin="10, 10, 10, 5"/>
+                <TextBox Text="{Binding GameboardToSave.Categories[1].Questions[4].Answer, Mode=TwoWay}" Margin="10, 5, 10, 10"/>
+
+
+                <!-- Category 3 -->
+                <Label Content="Category 3 Name" FontSize="20" />
+                <TextBox Text="{Binding GameboardToSave.Categories[2].CategoryName, Mode=TwoWay}" Margin="10" FontSize="20" />
+
+                <Label Content="Question 1" />
+                <TextBox Text="{Binding GameboardToSave.Categories[2].Questions[0].Source, Mode=TwoWay}" Margin="10, 10, 10, 5" />
+                <TextBox Text="{Binding GameboardToSave.Categories[2].Questions[0].Answer, Mode=TwoWay}" Margin="10, 5, 10, 10"/>
+
+                <Label Content="Question 2" />
+                <TextBox Text="{Binding GameboardToSave.Categories[2].Questions[1].Source, Mode=TwoWay}" Margin="10, 10, 10, 5"/>
+                <TextBox Text="{Binding GameboardToSave.Categories[2].Questions[1].Answer, Mode=TwoWay}" Margin="10, 5, 10, 10"/>
+
+                <Label Content="Question 3" />
+                <TextBox Text="{Binding GameboardToSave.Categories[2].Questions[2].Source, Mode=TwoWay}" Margin="10, 10, 10, 5"/>
+                <TextBox Text="{Binding GameboardToSave.Categories[2].Questions[2].Answer, Mode=TwoWay}" Margin="10, 5, 10, 10"/>
+
+                <Label Content="Question 4" />
+                <TextBox Text="{Binding GameboardToSave.Categories[2].Questions[3].Source, Mode=TwoWay}" Margin="10, 10, 10, 5"/>
+                <TextBox Text="{Binding GameboardToSave.Categories[2].Questions[3].Answer, Mode=TwoWay}" Margin="10, 5, 10, 10"/>
+
+                <Label Content="Question 5  " />
+                <TextBox Text="{Binding GameboardToSave.Categories[2].Questions[4].Source, Mode=TwoWay}" Margin="10, 10, 10, 5"/>
+                <TextBox Text="{Binding GameboardToSave.Categories[2].Questions[4].Answer, Mode=TwoWay}" Margin="10, 5, 10, 10"/>
+
+
+                <!-- Category 4 -->
+                <Label Content="Category 4 Name" FontSize="20" />
+                <TextBox Text="{Binding GameboardToSave.Categories[3].CategoryName, Mode=TwoWay}" Margin="10" FontSize="20" />
+
+                <Label Content="Question 1" />
+                <TextBox Text="{Binding GameboardToSave.Categories[3].Questions[0].Source, Mode=TwoWay}" Margin="10, 10, 10, 5" />
+                <TextBox Text="{Binding GameboardToSave.Categories[3].Questions[0].Answer, Mode=TwoWay}" Margin="10, 5, 10, 10"/>
+
+                <Label Content="Question 2" />
+                <TextBox Text="{Binding GameboardToSave.Categories[3].Questions[1].Source, Mode=TwoWay}" Margin="10, 10, 10, 5"/>
+                <TextBox Text="{Binding GameboardToSave.Categories[3].Questions[1].Answer, Mode=TwoWay}" Margin="10, 5, 10, 10"/>
+
+                <Label Content="Question 3" />
+                <TextBox Text="{Binding GameboardToSave.Categories[3].Questions[2].Source, Mode=TwoWay}" Margin="10, 10, 10, 5"/>
+                <TextBox Text="{Binding GameboardToSave.Categories[3].Questions[2].Answer, Mode=TwoWay}" Margin="10, 5, 10, 10"/>
+
+                <Label Content="Question 4" />
+                <TextBox Text="{Binding GameboardToSave.Categories[3].Questions[3].Source, Mode=TwoWay}" Margin="10, 10, 10, 5"/>
+                <TextBox Text="{Binding GameboardToSave.Categories[3].Questions[3].Answer, Mode=TwoWay}" Margin="10, 5, 10, 10"/>
+
+                <Label Content="Question 5  " />
+                <TextBox Text="{Binding GameboardToSave.Categories[3].Questions[4].Source, Mode=TwoWay}" Margin="10, 10, 10, 5"/>
+                <TextBox Text="{Binding GameboardToSave.Categories[3].Questions[4].Answer, Mode=TwoWay}" Margin="10, 5, 10, 10"/>
+
+
+                <!-- Category 5 -->
+                <Label Content="Category 5 Name" FontSize="20" />
+                <TextBox Text="{Binding GameboardToSave.Categories[4].CategoryName, Mode=TwoWay}" Margin="10" FontSize="20" />
+
+                <Label Content="Question 1" />
+                <TextBox Text="{Binding GameboardToSave.Categories[4].Questions[0].Source, Mode=TwoWay}" Margin="10, 10, 10, 5" />
+                <TextBox Text="{Binding GameboardToSave.Categories[4].Questions[0].Answer, Mode=TwoWay}" Margin="10, 5, 10, 10"/>
+
+                <Label Content="Question 2" />
+                <TextBox Text="{Binding GameboardToSave.Categories[4].Questions[1].Source, Mode=TwoWay}" Margin="10, 10, 10, 5"/>
+                <TextBox Text="{Binding GameboardToSave.Categories[4].Questions[1].Answer, Mode=TwoWay}" Margin="10, 5, 10, 10"/>
+
+                <Label Content="Question 3" />
+                <TextBox Text="{Binding GameboardToSave.Categories[4].Questions[2].Source, Mode=TwoWay}" Margin="10, 10, 10, 5"/>
+                <TextBox Text="{Binding GameboardToSave.Categories[4].Questions[2].Answer, Mode=TwoWay}" Margin="10, 5, 10, 10"/>
+
+                <Label Content="Question 4" />
+                <TextBox Text="{Binding GameboardToSave.Categories[4].Questions[3].Source, Mode=TwoWay}" Margin="10, 10, 10, 5"/>
+                <TextBox Text="{Binding GameboardToSave.Categories[4].Questions[3].Answer, Mode=TwoWay}" Margin="10, 5, 10, 10"/>
+
+                <Label Content="Question 5  " />
+                <TextBox Text="{Binding GameboardToSave.Categories[4].Questions[4].Source, Mode=TwoWay}" Margin="10, 10, 10, 5"/>
+                <TextBox Text="{Binding GameboardToSave.Categories[4].Questions[4].Answer, Mode=TwoWay}" Margin="10, 5, 10, 10"/>
+
+
+                <!-- Category 6 -->
+                <Label Content="Category 6 Name" FontSize="20" />
+                <TextBox Text="{Binding GameboardToSave.Categories[5].CategoryName, Mode=TwoWay}" Margin="10" FontSize="20" />
+
+                <Label Content="Question 1" />
+                <TextBox Text="{Binding GameboardToSave.Categories[5].Questions[0].Source, Mode=TwoWay}" Margin="10, 10, 10, 5" />
+                <TextBox Text="{Binding GameboardToSave.Categories[5].Questions[0].Answer, Mode=TwoWay}" Margin="10, 5, 10, 10"/>
+
+                <Label Content="Question 2" />
+                <TextBox Text="{Binding GameboardToSave.Categories[5].Questions[1].Source, Mode=TwoWay}" Margin="10, 10, 10, 5"/>
+                <TextBox Text="{Binding GameboardToSave.Categories[5].Questions[1].Answer, Mode=TwoWay}" Margin="10, 5, 10, 10"/>
+
+                <Label Content="Question 3" />
+                <TextBox Text="{Binding GameboardToSave.Categories[5].Questions[2].Source, Mode=TwoWay}" Margin="10, 10, 10, 5"/>
+                <TextBox Text="{Binding GameboardToSave.Categories[5].Questions[2].Answer, Mode=TwoWay}" Margin="10, 5, 10, 10"/>
+
+                <Label Content="Question 4" />
+                <TextBox Text="{Binding GameboardToSave.Categories[5].Questions[3].Source, Mode=TwoWay}" Margin="10, 10, 10, 5"/>
+                <TextBox Text="{Binding GameboardToSave.Categories[5].Questions[3].Answer, Mode=TwoWay}" Margin="10, 5, 10, 10"/>
+
+                <Label Content="Question 5  " />
+                <TextBox Text="{Binding GameboardToSave.Categories[5].Questions[4].Source, Mode=TwoWay}" Margin="10, 10, 10, 5"/>
+                <TextBox Text="{Binding GameboardToSave.Categories[5].Questions[4].Answer, Mode=TwoWay}" Margin="10, 5, 10, 10"/>
+
+
+            </StackPanel>
+
+        </ScrollViewer>
+        <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="0">
+            <Button Content="Save Questions" Click="Save_Question_Click" HorizontalAlignment="Right" Margin="20"/>
+        </StackPanel>
+    </Grid>
+</Window>
