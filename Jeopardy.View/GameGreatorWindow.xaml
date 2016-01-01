@@ -3,8 +3,7 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Create A Game" Height="600" Width="800"
-        x:Name="MyGameCreatorWindow"
-        Closed="On_Window_Closed">
+        x:Name="MyGameCreatorWindow" WindowStyle="None" WindowState="Maximized">
     <Window.DataContext>
         <vm:GameCreatorViewModel />
     </Window.DataContext>
@@ -41,7 +40,6 @@
             </StackPanel>
 
             <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="1">
-                <Button VerticalAlignment="Top" Click="Edit_Questions_Pack" Margin="20">Edit Question Packs</Button>
 
                 <Label FontWeight="Bold" FontSize="24" FontFamily="Helvetica">Questions</Label>
 

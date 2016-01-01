@@ -1,12 +1,12 @@
-﻿<Window x:Class="Jeopardy.View.QuestionWriterWindow"
+﻿<UserControl x:Class="Jeopardy.View.QuestionWriterWindow"
         xmlns:vm="clr-namespace:Jeopardy.ViewModel;assembly=Jeopardy.ViewModel"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:md="clr-namespace:Jeopardy.Model;assembly=Jeopardy.Model"
-        Title="QuestionWriterWindow" Height="600" Width="800"  WindowState="Maximized">
-    <Window.DataContext>
+        Height="600" Width="800">
+    <UserControl.DataContext>
         <vm:QuestionsCreatorViewModel />
-    </Window.DataContext>
+    </UserControl.DataContext>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="8*" />
@@ -177,4 +177,4 @@
             <Button Content="Save Questions" Click="Save_Question_Click" HorizontalAlignment="Right" Margin="20"/>
         </StackPanel>
     </Grid>
-</Window>
+</UserControl>

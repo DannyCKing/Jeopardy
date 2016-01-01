@@ -1,0 +1,124 @@
+﻿<UserControl x:Class="Jeopardy.View.StartupWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Background="DarkBlue" 
+    >
+    <!--Title="StartupWindow" WindowStyle="SingleBorderWindow" WindowState="Maximized" -->
+    <UserControl.Resources>
+        <Style TargetType="TextBlock" x:Key="MenuButton" >
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="FontSize" Value="24" />
+        </Style>
+
+        <Style TargetType="Image" x:Key="MenuImage" >
+            <Setter Property="Margin" Value="50,50,50,0"/>
+        </Style>
+
+        <Style TargetType="Grid" x:Key="MenuGrid" >
+            <Style.Triggers>
+                <Trigger Property="Grid.IsMouseOver" Value="True">
+                    <Setter Property="TextBlock.Foreground" Value="Yellow" />
+                </Trigger>
+                <Trigger Property="Grid.IsMouseOver" Value="False">
+                    <Setter Property="TextBlock.Foreground" Value="White" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Label Grid.Row="0" Grid.Column="0" Content="Jeopardy"  
+               Style="{DynamicResource ClueFont}" FontSize="144" FontWeight="Light" Foreground="White" 
+               HorizontalContentAlignment="Center" VerticalContentAlignment="Center" />
+        <Grid Grid.Row="1" Grid.Column="0" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <!--Play button grid -->
+            <Grid Grid.Column="0" Grid.Row="0" Style="{StaticResource MenuGrid}" MouseUp="On_Play_Button_Clicked">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="5*" />
+                    <RowDefinition Height="1*" />
+                </Grid.RowDefinitions>
+                <Image x:Name="PlayImage" Grid.Row="0" Grid.Column="0" Source="Resources/play_icon.png" Style="{StaticResource MenuImage}" />
+                <TextBlock Style="{StaticResource MenuButton}" Text="Play Game" Grid.Row="1" Grid.Column="0" />
+            </Grid>
+
+            <!--Write questions button grid -->
+            <Grid Grid.Column="1" Grid.Row="0" Style="{StaticResource MenuGrid}" MouseUp="On_Write_Questions_Clicked" >
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="5*" />
+                    <RowDefinition Height="1*" />
+                </Grid.RowDefinitions>
+                <Image x:Name="WriteImage" Grid.Row="0" Grid.Column="0" Source="Resources/write_icon.png" Style="{StaticResource MenuImage}" />
+                <TextBlock Style="{StaticResource MenuButton}" Text="Write Questions" Grid.Row="1" Grid.Column="0" />
+            </Grid>
+
+            <!--Share questions button grid -->
+            <!--<Grid Grid.Column="2" Grid.Row="0" Style="{StaticResource MenuGrid}" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="5*" />
+                    <RowDefinition Height="1*" />
+                </Grid.RowDefinitions>
+                <Image x:Name="ShareImage" Grid.Row="0" Grid.Column="0" Source="Resources/share_icon.png" Style="{StaticResource MenuImage}" />
+                <TextBlock Style="{StaticResource MenuButton}" Text="Share Questions" Grid.Row="1" Grid.Column="0" />
+            </Grid>-->
+
+
+            <!--Settings button grid -->
+            <!--<Grid Grid.Column="3" Grid.Row="0" Style="{StaticResource MenuGrid}" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="5*" />
+                    <RowDefinition Height="1*" />
+                </Grid.RowDefinitions>
+                <Image x:Name="SettingsImage" Grid.Row="0" Grid.Column="0" Source="Resources/settings_icon.png" Style="{StaticResource MenuImage}" />
+                <TextBlock Style="{StaticResource MenuButton}" Text="Settings" Grid.Row="1" Grid.Column="0" />
+            </Grid>-->
+
+
+            <!--Exit button grid -->
+            <Grid Grid.Column="4" Grid.Row="0" Style="{StaticResource MenuGrid}" MouseUp="On_Exit_Button_Clicked">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="5*" />
+                    <RowDefinition Height="1*" />
+                </Grid.RowDefinitions>
+                <Image x:Name="ExitImage" Grid.Row="0" Grid.Column="0" Source="Resources/exit_icon.png" Style="{StaticResource MenuImage}" />
+                <TextBlock Style="{StaticResource MenuButton}" Text="Exit" Grid.Row="1" Grid.Column="0" />
+            </Grid>
+
+
+        </Grid>
+    </Grid>
+</UserControl>

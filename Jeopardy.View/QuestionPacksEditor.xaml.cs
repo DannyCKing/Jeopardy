@@ -1,4 +1,7 @@
-﻿using System.Windows;
+﻿using System.Collections.Generic;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Media;
 using Jeopardy.Model;
 using Jeopardy.ViewModel;
 
@@ -7,65 +10,130 @@ namespace Jeopardy.View
     /// <summary>
     /// Interaction logic for QuestionPacksEditor.xaml
     /// </summary>
-    public partial class QuestionPacksEditor : Window
+    public partial class QuestionPacksEditor : UserControl
     {
-        public QuestionPacksEditor()
+        public WrapperWindow WrapperWindow { get; private set; }
+
+        public QuestionPacksEditor(WrapperWindow wrapperWindow)
         {
+            WrapperWindow = wrapperWindow;
+
             InitializeComponent();
+
+            QuestionPacks.SelectionChanged += QuestionPacks_SelectionChanged;
+            CategoriesList.SelectionChanged += CategoriesList_SelectionChanged;
+
+            QuestionPacks.SelectedIndex = -1;
             QuestionPacks.SelectedIndex = 0;
+
+            this.Loaded += QuestionPacksEditor_Loaded;
         }
 
-
-        private void Create_Question_Click(object sender, RoutedEventArgs e)
+        void QuestionPacksEditor_Loaded(object sender, RoutedEventArgs e)
         {
-            var window = new QuestionWriterWindow();
-            var newDataContext = new QuestionsCreatorViewModel();
-            if (OpenWindow(window))
+            foreach (TextBox tb in FindVisualChildren<TextBox>(this))
             {
-                var dataContext = DataContext as QuestionPacksEditorViewModel;
-                if (dataContext != null)
+                tb.GotFocus += On_Textbox_Got_Focus;
+            }
+        }
+
+        void On_Textbox_Got_Focus(object sender, RoutedEventArgs e)
+        {
+            TextBox textBox = sender as TextBox;
+            if (textBox != null)
+            {
+                if (IsDefaultText(textBox.Text))
                 {
-                    dataContext.GetQuestionPacks();
+                    textBox.Text = "";
                 }
             }
         }
 
-        private void Edit_Question_Click(object sender, RoutedEventArgs e)
+        private bool IsDefaultText(string p)
         {
-            var window = new QuestionWriterWindow();
-            var newDataContext = window.DataContext as QuestionsCreatorViewModel;
-            newDataContext.GameboardToSave = QuestionPacks.SelectedItem as Gameboard;
-            if (newDataContext != null)
+            for (int i = 1; i <= 6; i++)
             {
-                int selectedIndex = QuestionPacks.SelectedIndex;
-                if (selectedIndex != -1)
+                if (string.Equals(string.Format(Category.CATEGORY_NAME, i), p, System.StringComparison.OrdinalIgnoreCase))
                 {
-                    var dataContext = DataContext as QuestionPacksEditorViewModel;
-                    if (dataContext != null)
+                    return true;
+                }
+                else if (string.Equals(string.Format(Category.QUESTION_FORMAT, i), p, System.StringComparison.OrdinalIgnoreCase))
+                {
+                    return true;
+                }
+                else if (string.Equals(string.Format(Category.ANSWER_FORMAT, i), p, System.StringComparison.OrdinalIgnoreCase))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        void CategoriesList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var context = DataContext as QuestionPacksEditorViewModel;
+            if (context != null)
+            {
+                context.CurrentCategory = (Category)CategoriesList.SelectedItem;
+            }
+        }
+
+        void QuestionPacks_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var context = DataContext as QuestionPacksEditorViewModel;
+            if (context != null)
+            {
+                context.CurrentQuestionPack = (Gameboard)QuestionPacks.SelectedItem;
+                CategoriesList.SelectedIndex = -1;
+                CategoriesList.SelectedIndex = 0;
+            }
+        }
+
+        private void DeleteQuestionPack(object sender, RoutedEventArgs e)
+        {
+            if (QuestionPacks.SelectedItem != null)
+            {
+                var context = DataContext as QuestionPacksEditorViewModel;
+                if (context != null)
+                {
+                    context.DeleteGameboardsCommand.Execute(QuestionPacks.SelectedItem);
+                    if (QuestionPacks.SelectedIndex == -1)
                     {
-                        var questions = dataContext.QuestionPacks[selectedIndex];
-                        //newDataContext.GameboardToSave = questions;
-                        if (OpenWindow(window))
-                        {
-                            dataContext.GetQuestionPacks();
-                        }
+                        QuestionPacks.SelectedIndex = 0;
                     }
                 }
             }
         }
 
-
-
-        private bool OpenWindow(QuestionWriterWindow window)
+        private void SaveAllQuestionsPack(object sender, RoutedEventArgs e)
         {
-            if (window.ShowDialog() == true)
+            var context = DataContext as QuestionPacksEditorViewModel;
+            if (context != null)
             {
-                return true;
+                context.SaveGameboardsCommand.Execute(null);
             }
-            else
+            WrapperWindow.ShowStartupWindow();
+        }
+
+        public static IEnumerable<T> FindVisualChildren<T>(DependencyObject depObj) where T : DependencyObject
+        {
+            if (depObj != null)
             {
-                return true;
+                for (int i = 0; i < VisualTreeHelper.GetChildrenCount(depObj); i++)
+                {
+                    DependencyObject child = VisualTreeHelper.GetChild(depObj, i);
+                    if (child != null && child is T)
+                    {
+                        yield return (T)child;
+                    }
+
+                    foreach (T childOfChild in FindVisualChildren<T>(child))
+                    {
+                        yield return childOfChild;
+                    }
+                }
             }
         }
+
     }
 }

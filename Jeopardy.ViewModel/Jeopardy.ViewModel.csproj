@@ -50,8 +50,11 @@
     <Compile Include="Commands\ActionCommand.cs" />
     <Compile Include="Converters\BoolToColorConverter.cs" />
     <Compile Include="Commands\RelayCommand.cs" />
+    <Compile Include="Converters\IsAnsweringConverter.cs" />
     <Compile Include="Converters\EnumTypeToVisibilityConverter.cs" />
     <Compile Include="Converters\NullToEnabledConverter.cs" />
+    <Compile Include="EditScoreViewModel.cs" />
+    <Compile Include="SelectPlayersViewModel.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -64,6 +67,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Converters\ReverseBooleanVisibilityConverter.cs" />
     <Compile Include="QuestionsCreatorViewModel.cs" />
+    <Compile Include="SelectQuestionsViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Jeopardy.Model\Jeopardy.Model.csproj">

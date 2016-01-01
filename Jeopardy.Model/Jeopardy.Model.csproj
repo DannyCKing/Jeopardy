@@ -44,6 +44,7 @@
     <Compile Include="CategoryHeader.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="Gameboard.cs" />
+    <Compile Include="Helpers\DeleteGameboardFile.cs" />
     <Compile Include="Helpers\GamePacksReader.cs" />
     <Compile Include="Helpers\GetGameboardFromFile.cs" />
     <Compile Include="Helpers\SaveGameboardToFile.cs" />

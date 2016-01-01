@@ -1,0 +1,8 @@
+﻿<Window x:Class="Jeopardy.View.WrapperWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Jeopardy" WindowState="Maximized">
+    <Grid>
+        <ContentControl x:Name="ContentControl"/>
+    </Grid>
+</Window>

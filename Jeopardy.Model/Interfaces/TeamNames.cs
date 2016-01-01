@@ -1,5 +1,6 @@
 ﻿using System;
-
+using System.Collections.ObjectModel;
+using System.Linq;
 namespace Jeopardy.Model.Interfaces
 {
     public static class TeamNames
@@ -7,10 +8,14 @@ namespace Jeopardy.Model.Interfaces
         private static Random rand;
 
         private static string[] _adjectives = {"Big", "Grumpy", "Incompetent", "Incontinent", "Average", "Medicore",
-                                        "Hot", "Smelly", "Whiny", "Darn", "Yellow", "Pink", "Mad"};
+                                        "Hot", "Smelly", "Whiny", "Darn", "Yellow", "Pink", "Mad" , "Fire Breathing",
+                                              "Tenacious", "Crazy" ,"Purple", "The Mighty Morphin"};
 
         private static string[] _nouns = { "Gorillas", "Monkeys", "People", "Lions", "Pansies", "Elephants", "Einstiens", 
-                                    "Mamas", "Kittens", "Kardashians" , "Hillary Clinton Fans", "Penguins"};
+                                    "Mamas", "Kittens", "Hillary Clinton Fans", "Penguins", "Daddys" , "Twilight Fans",
+                                         "Chargers" , "Thunder" , "Dinosaurs" , "Rubber Duckies" , "Squirrels", "Llamas", "Goats" , 
+                                         "Tuna Fish" , "Hobbits", "Dragons", "Jedi Masters" , "Warthogs", "Power Rangers" , 
+                                         "A-Team" , "B-Team", "Cookie Monsters" , "Yellow Jackets" };
 
 
         static TeamNames()
@@ -18,13 +23,20 @@ namespace Jeopardy.Model.Interfaces
             rand = new Random(DateTime.Now.Millisecond);
         }
 
-        public static string GetRandomTeamName()
+        public static string GetRandomTeamName(ObservableCollection<Player> existingPlayers)
         {
-            string adjective = GetRandomAdjective();
+            var returnName = "";
+            do
+            {
+                string adjective = GetRandomAdjective();
 
-            string noun = GetRandomNoun();
+                string noun = GetRandomNoun();
 
-            return adjective + " " + noun;
+                returnName = adjective + " " + noun;
+
+            } while (existingPlayers.Any(x => x.Name == returnName));
+
+            return returnName;
         }
 
         private static string GetRandomNoun()

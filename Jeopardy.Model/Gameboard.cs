@@ -8,13 +8,27 @@ namespace Jeopardy.Model
 {
     public class Gameboard : NotifyPropertyChanged
     {
+        #region Constants
+
         private const int CATEGORIES_PER_GAME = 6;
+
+        #endregion
+
+        #region Fields/Properties
+
+        private static Random rng = new Random();
+
+        #region Identifier
 
         public Guid UniqueIdentifier
         {
             get;
             private set;
         }
+
+        #endregion
+
+        #region Appeareance Order
 
         private List<Tuple<int, int>> QuestionAppearanceOrder
         {
@@ -28,7 +42,7 @@ namespace Jeopardy.Model
             set;
         }
 
-        private static Random rng = new Random();
+        #endregion
 
         #region QuestionPackName
 
@@ -87,49 +101,23 @@ namespace Jeopardy.Model
 
         #endregion
 
+        #endregion
+
         #region Constructors
 
-        public Gameboard()
+        public Gameboard(bool createExamplePack = false)
         {
             UniqueIdentifier = Guid.NewGuid();
-            QuestionPackName = "Sample Pack";
-            Categories = new Category[] { 
-                new Category("Category 1 Name", 
-                    new Question("Question 1", "Answer 1", 1),
-                    new Question("Question 2", "Answer 2", 2),
-                    new Question("Question 3", "Answer 3", 3),
-                    new Question("Question 4", "Answer 4", 4),
-                    new Question("Question 5", "Answer 5", 5)),
-                new Category("Category 2 Name", 
-                    new Question("Question 1", "Answer 1", 1),
-                    new Question("Question 2", "Answer 2", 2),
-                    new Question("Question 3", "Answer 3", 3),
-                    new Question("Question 4", "Answer 4", 4),
-                    new Question("Question 5", "Answer 5", 5)),
-                new Category("Category 3 Name", 
-                    new Question("Question 1", "Answer 1", 1),
-                    new Question("Question 2", "Answer 2", 2),
-                    new Question("Question 3", "Answer 3", 3),
-                    new Question("Question 4", "Answer 4", 4),
-                    new Question("Question 5", "Answer 5", 5)),
-                new Category("Category 4 Name", 
-                    new Question("Question 1", "Answer 1", 1),
-                    new Question("Question 2", "Answer 2", 2),
-                    new Question("Question 3", "Answer 3", 3),
-                    new Question("Question 4", "Answer 4", 4),
-                    new Question("Question 5", "Answer 5", 5)),
-                new Category("Category 5 Name", 
-                    new Question("Question 1", "Answer 1", 1),
-                    new Question("Question 2", "Answer 2", 2),
-                    new Question("Question 3", "Answer 3", 3),
-                    new Question("Question 4", "Answer 4", 4),
-                    new Question("Question 5", "Answer 5", 5)),
-                new Category("Category 6 Name", 
-                    new Question("Question 1", "Answer 1", 1),
-                    new Question("Question 2", "Answer 2", 2),
-                    new Question("Question 3", "Answer 3", 3),
-                    new Question("Question 4", "Answer 4", 4),
-                    new Question("Question 5", "Answer 5", 5))};
+            if (createExamplePack)
+            {
+                QuestionPackName = "Example Pack";
+                Categories = Category.GetExampleCategories();
+            }
+            else
+            {
+                QuestionPackName = "New Pack";
+                Categories = Category.GetPlaceholderCategories();
+            }
         }
 
         public Gameboard(string roundName, Guid guid, Category cat1, Category cat2, Category cat3, Category cat4, Category cat5, Category cat6)
@@ -209,6 +197,8 @@ namespace Jeopardy.Model
                 Timer.Enabled = false;
             }
         }
+
+
 
     }
 }

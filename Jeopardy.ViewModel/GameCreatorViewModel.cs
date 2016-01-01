@@ -121,7 +121,8 @@ namespace Jeopardy.ViewModel
         {
             GameStarted = false;
 
-            Players = new ObservableCollection<Player> { new Player("Player 1"), new Player("Player 2") };
+            Players = new ObservableCollection<Player> { new Player(TeamNames.GetRandomTeamName(Players)) };
+            Players.Add(new Player(TeamNames.GetRandomTeamName(Players)));
 
             AddPlayerCommand = new ActionCommand(AddPlayer);
             RemovePlayerCommand = new ActionCommand(RemovePlayer);
@@ -174,7 +175,7 @@ namespace Jeopardy.ViewModel
 
         private void AddPlayer(object parameter = null)
         {
-            Players.Add(new Player(TeamNames.GetRandomTeamName()));
+            Players.Add(new Player(TeamNames.GetRandomTeamName(Players)));
         }
 
         private void RemovePlayer(object parameter = null)

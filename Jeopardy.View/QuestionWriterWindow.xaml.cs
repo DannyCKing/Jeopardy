@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using System.Windows.Controls;
 using Jeopardy.ViewModel;
 
 namespace Jeopardy.View
@@ -6,7 +7,7 @@ namespace Jeopardy.View
     /// <summary>
     /// Interaction logic for QuestionWriterWindow.xaml
     /// </summary>
-    public partial class QuestionWriterWindow : Window
+    public partial class QuestionWriterWindow : UserControl
     {
         public QuestionWriterWindow()
         {
@@ -18,7 +19,7 @@ namespace Jeopardy.View
         {
             var dataContext = DataContext as QuestionsCreatorViewModel;
             dataContext.SaveQuestionsCommand.Execute(null);
-            this.Close();
+            //this.Close();
         }
     }
 }

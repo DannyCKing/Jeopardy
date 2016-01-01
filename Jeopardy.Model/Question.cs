@@ -24,6 +24,18 @@ namespace Jeopardy.Model
             }
         }
 
+        #region Formatted Answer
+
+        public string FormattedAnswer
+        {
+            get
+            {
+                return string.Format("Answer: {0}", Answer);
+            }
+        }
+        #endregion
+        #region Answer
+
         private string _answer;
         public string Answer
         {
@@ -35,8 +47,12 @@ namespace Jeopardy.Model
             {
                 _answer = value;
                 OnPropertyChanged("Answer");
+                OnPropertyChanged("FormattedAnswer");
             }
         }
+
+        #endregion
+
 
         public int Rating { get; private set; }
 

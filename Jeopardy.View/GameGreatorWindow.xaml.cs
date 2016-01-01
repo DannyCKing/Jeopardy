@@ -19,15 +19,15 @@ namespace Jeopardy.View
 
         private void Edit_Questions_Pack(object sender, RoutedEventArgs e)
         {
-            var window = new QuestionPacksEditor();
-            if (window.ShowDialog() == true)
-            {
-                GetQuestionPacks();
-            }
-            else
-            {
-                GetQuestionPacks();
-            }
+            //var window = new QuestionPacksEditor();
+            //if (window.ShowDialog() == true)
+            //{
+            //    GetQuestionPacks();
+            //}
+            //else
+            //{
+            //    GetQuestionPacks();
+            //}
         }
 
         private void GetQuestionPacks()

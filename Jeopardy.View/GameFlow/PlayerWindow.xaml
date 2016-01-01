@@ -63,8 +63,10 @@
                     <ImageBrush Stretch="Fill" ImageSource="{Binding Source}"/>
                 </Border.Background>
             </Border>
-        </DataTemplate></Window.Resources>
-    <Grid><!--Gameboard goes here -->
+        </DataTemplate>
+    </Window.Resources>
+    <Grid>
+        <!--Gameboard goes here -->
         <ContentPresenter Grid.Column="0" Grid.Row="0" Content="{Binding CurrentRound.Gameboard}" ContentTemplate="{DynamicResource GameboardGridTempate}" />
     </Grid>
 </Window>

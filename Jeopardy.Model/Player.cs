@@ -87,7 +87,6 @@ namespace Jeopardy.Model
 
         public ICommand OnSelectPlayerCommand { get; set; }
 
-
         public Player(string name)
         {
             Score = 0;

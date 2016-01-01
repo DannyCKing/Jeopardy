@@ -1,0 +1,131 @@
+﻿<UserControl x:Class="Jeopardy.View.GameFlow.SelectQuestionsWindow"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d"  Background="DarkBlue">
+    <UserControl.Resources>
+        <Style x:Key="myLBStyle" TargetType="{x:Type ListBoxItem}">
+            <Setter Property="HorizontalContentAlignment" Value="Stretch"></Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ListBoxItem">
+                        <Border Name="Border">
+                            <ContentPresenter />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsSelected"  Value="True">
+                                <Setter TargetName="Border" Property="Background" Value="Purple" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
+            <Style.Triggers>
+
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width ="1*" />
+            <ColumnDefinition Width ="2*" />
+            <ColumnDefinition Width ="1*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="4*" />
+            <RowDefinition Height="1*" />
+        </Grid.RowDefinitions>
+        <TextBlock Text="Questions" Grid.Row="0" Grid.Column="1" FontSize="72" Foreground="White" FontWeight="Bold" HorizontalAlignment="Center"/>
+
+        <!-- Inner grid for both rounds-->
+        <Grid  Grid.Row="1" Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <!-- Left Grid For Round 1-->
+            <Grid  Grid.Row="0" Grid.Column="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="8*" />
+                </Grid.RowDefinitions>
+                <TextBlock Text="Round 1" Grid.Row="0" Grid.Column="0" FontSize="24" Foreground="White" FontWeight="Bold" HorizontalAlignment="Center"/>
+
+                <!--Question List for round 1 -->
+                <ListBox x:Name="QuestionPacks1" 
+                    Grid.Row="1" Grid.Column="0" 
+                     SelectedIndex="0"
+                     Background="Blue" ItemContainerStyle="{StaticResource myLBStyle}" VerticalAlignment="Stretch" Margin="20"
+                        ItemsSource="{Binding QuestionPacks}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Background="Transparent">
+                                <TextBlock 
+                            Foreground="White" FontSize="24"
+                            Text="{Binding QuestionPackName}" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </Grid>
+
+            <!-- Right Grid For Round 2-->
+            <Grid  Grid.Row="0" Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="8*" />
+                </Grid.RowDefinitions>
+                <TextBlock Text="Round 2" Grid.Row="0" Grid.Column="0" FontSize="24" Foreground="White" FontWeight="Bold" HorizontalAlignment="Center"/>
+
+                <!--Question List for round 2 -->
+                <ListBox x:Name="QuestionPacks2" 
+                    Grid.Row="1" Grid.Column="0" 
+                     SelectedIndex="0"
+                     Background="Blue" ItemContainerStyle="{StaticResource myLBStyle}" VerticalAlignment="Stretch" Margin="20"
+                        ItemsSource="{Binding QuestionPacks}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Background="Transparent">
+                                <TextBlock 
+                            Foreground="White" FontSize="24"
+                            Text="{Binding QuestionPackName}" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </Grid>
+
+        </Grid>
+        
+        <!-- Back and Next buttons -->
+        <Grid Grid.Row="2" Grid.Column="1"  >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="3*" />
+            </Grid.ColumnDefinitions>
+            <Button   Grid.Row="0" Grid.Column="0" Click="Back_Button_Click"
+                    Foreground="White" Background="Red" FontSize="24" BorderThickness="0" 
+                    Content="Exit" Margin="10"/>
+            <Button  Grid.Row="0" Grid.Column="1" Click="Forward_Button_Click"
+                    Foreground="White" Background="DarkGreen" FontSize="24" BorderThickness="0" 
+                    Content="Next"  Margin="10" />
+        </Grid>
+
+    </Grid>
+</UserControl>
